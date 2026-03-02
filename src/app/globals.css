@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+:root {
+  /* Primary — terracotta from the logo */
+  --color-primary: #E07A5F;
+  --color-primary-light: #F0A08A;
+  --color-primary-dark: #2D3E4F;
+
+  /* Neutrals — warm cream tones */
+  --color-bg: #F5EDE4;
+  --color-bg-alt: #FFF8F2;
+  --color-text: #2C2C2C;
+  --color-text-muted: #7A7067;
+  --color-border: #DDD4C8;
+
+  /* Accent — same terracotta for CTAs and highlights */
+  --color-accent: #E07A5F;
+  --color-accent-light: #F0A08A;
+  --color-accent-hover: #C4613F;
+}
+
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-bg: var(--color-bg);
+  --color-bg-alt: var(--color-bg-alt);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-border: var(--color-border);
+  --color-accent: var(--color-accent);
+  --color-accent-light: var(--color-accent-light);
+  --color-accent-hover: var(--color-accent-hover);
+  --font-sans: var(--font-dm-sans);
+  --font-serif: var(--font-dm-serif-display);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+}

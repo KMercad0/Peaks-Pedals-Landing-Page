@@ -18,7 +18,7 @@
 
 | Layer | Choice | Why |
 |-------|--------|-----|
-| Framework | **Next.js 14+ (App Router)** | SSG for fast static pages, resume value (fills your framework gap) |
+| Framework | **Next.js 15 (App Router)** | SSG for fast static pages, stable React 19 support, Turbopack dev server |
 | Language | **TypeScript** | Consistent with your existing portfolio |
 | Styling | **Tailwind CSS** | You already know it, fast iteration |
 | Animation | **Framer Motion** | Scroll reveals, hover effects, polished feel |
@@ -77,6 +77,13 @@ Why: DM Serif Display is elegant without being stuffy — feels like a boutique 
 
 ## 4. Page Structure (Single Page)
 
+### Section 0: Navigation (Sticky Header)
+- **Sticky navbar** that becomes semi-transparent → solid on scroll
+- Left: property name / logo text
+- Right: section links (smooth scroll) — About, Gallery, Amenities, Location
+- Far right: "Book Now" CTA button (accent color)
+- Mobile: simplified bar with just logo + "Book Now" CTA (or hamburger menu)
+
 ### Section 1: Hero
 - **Full-width** rooftop/mountain view photo as background (roof3.jpg)
 - Slight dark overlay gradient (bottom-heavy) for text readability
@@ -112,7 +119,7 @@ Why: DM Serif Display is elegant without being stuffy — feels like a boutique 
 - Static text block with address and distance info:
   - "M.L. Quezon St., San Pedro, Irosin, Sorsogon 4707"
   - "58 miles from Bicol International Airport"
-- Embedded Google Maps iframe (or a static map image linking to Google Maps)
+- **Embedded Google Maps iframe** showing the property location
 - Check-in: 2:00 PM / Check-out: 12:00 PM
 
 ### Section 6: Reviews (Last Priority — Placeholder for Now)
@@ -220,11 +227,12 @@ peaks-pedals/
 │   │   ├── page.tsx           # single landing page, imports all sections
 │   │   └── globals.css        # tailwind directives + CSS variables
 │   ├── components/
+│   │   ├── Navbar.tsx         # sticky nav with section links + CTA
 │   │   ├── Hero.tsx
 │   │   ├── About.tsx
 │   │   ├── PhotoCards.tsx
 │   │   ├── Amenities.tsx
-│   │   ├── Location.tsx
+│   │   ├── Location.tsx       # includes Google Maps iframe
 │   │   ├── Reviews.tsx        # placeholder for now
 │   │   ├── Footer.tsx
 │   │   └── BookingCTA.tsx     # reusable CTA button
@@ -258,18 +266,29 @@ peaks-pedals/
 
 ---
 
+## 8b. SEO (Included in v1)
+
+- **Meta tags** in `layout.tsx`: title, description, viewport
+- **Open Graph tags**: og:title, og:description, og:image (for WhatsApp/Facebook/social sharing)
+- **Favicon**: simple icon (mountain or bike themed)
+- **JSON-LD structured data**: `LodgingBusiness` schema for Google rich results — includes name, address, price range, rating, images
+- **Canonical URL**: set once deployed to Vercel
+
+---
+
 ## 9. Claude Code Prompt
 
 When you're ready to build, paste this into Claude Code:
 
 ```
-Build a Next.js 14 (App Router) landing page for "Peaks & Pedals Transient" 
+Build a Next.js 15 (App Router) landing page for "Peaks & Pedals Transient" 
 — a transient apartment in Irosin, Sorsogon with a rooftop view of Mt. Bulusan.
 
 Read PEAKS_PEDALS_PLAN.md for the full spec including:
 - Tech stack (Next.js + TypeScript + Tailwind + Framer Motion)
 - Design direction ("Misty Mountain Calm" — sage greens, warm off-whites, DM Serif Display + DM Sans fonts)
-- Page sections: Hero, About, Photo Cards (3-col), Amenities (3-col), Location, Reviews placeholder, Footer
+- Page sections: Navbar (sticky), Hero, About, Photo Cards (3-col), Amenities (3-col), Location (with Google Maps), Reviews placeholder, Footer
+- SEO: Open Graph tags, JSON-LD LodgingBusiness schema, favicon
 - Content data structure in src/data/property.ts
 - File structure
 
@@ -297,9 +316,7 @@ Ideally you'd have 5-8 photos total for a proper gallery, but 3 strong ones in c
 - [ ] Add more photos and a lightbox gallery component
 - [ ] Real reviews section (manually curated)
 - [ ] Multi-language support (English + Filipino)
-- [ ] Integrate Google Maps embed in Location section
 - [ ] Add a simple contact form (could use Formspree or similar — no backend)
-- [ ] SEO metadata (Open Graph tags for social sharing)
 - [ ] Analytics (Vercel Analytics or Google Analytics)
 
 ---
@@ -309,7 +326,7 @@ Ideally you'd have 5-8 photos total for a proper gallery, but 3 strong ones in c
 When you ship this, add it to your resume as:
 
 **Peaks & Pedals Transient — Landing Page**
-- Built a static landing page for a family-owned transient property using Next.js 14 (App Router), TypeScript, Tailwind CSS, and Framer Motion
+- Built a static landing page for a family-owned transient property using Next.js 15 (App Router), TypeScript, Tailwind CSS, and Framer Motion
 - Implemented responsive design with optimized image loading via next/image, achieving 90+ Lighthouse scores
 - Deployed on Vercel with static export for zero-cost hosting
 

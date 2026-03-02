@@ -1,9 +1,8 @@
 # Peaks & Pedals Transient — Landing Page Plan
 
-> Hand this doc to Claude Code. It has everything needed to scaffold and build the site.
 
 ---
-
+mcp__serena__activate_project project="."
 ## 1. Project Overview
 
 **What:** Brochure/showcase landing page for "Peaks & Pedals Transient" — a family-owned transient apartment in Irosin, Sorsogon with a rooftop view of Mt. Bulusan.

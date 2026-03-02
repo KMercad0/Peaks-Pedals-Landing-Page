@@ -23,6 +23,18 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -31,7 +43,7 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
+      <nav className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16" aria-label="Main navigation">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2">
           <Image
@@ -87,7 +99,8 @@ export default function Navbar() {
             className={`p-1 transition-colors ${
               scrolled ? "text-[var(--color-text)]" : "text-white"
             }`}
-            aria-label="Toggle menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -96,7 +109,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-[var(--color-bg)] border-t border-[var(--color-border)] shadow-lg">
+        <div className="md:hidden bg-[var(--color-bg)] border-t border-[var(--color-border)] shadow-lg" role="menu">
           <div className="px-4 py-4 flex flex-col gap-3">
             {navLinks.map((link) => (
               <a

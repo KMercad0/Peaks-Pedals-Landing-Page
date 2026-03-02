@@ -51,7 +51,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <main>
+      <main id="main-content">
         <Hero />
         <About />
         <PhotoCards />

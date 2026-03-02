@@ -31,7 +31,7 @@ export default function Gallery() {
         </motion.p>
 
         {/* Bento grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {images.map((img, i) => {
             // First image: tall (spans 2 rows), fourth image: wide (spans 2 cols on lg)
             const isTall = i === 0;
@@ -46,9 +46,9 @@ export default function Gallery() {
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 className={`group relative overflow-hidden rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 ${
                   isTall
-                    ? "row-span-2 aspect-auto min-h-[300px] sm:min-h-[400px]"
+                    ? "sm:row-span-2 aspect-[4/3] sm:aspect-auto sm:min-h-[400px]"
                     : isWide
-                      ? "lg:col-span-2 aspect-[16/9]"
+                      ? "lg:col-span-2 aspect-[4/3] sm:aspect-[16/9]"
                       : "aspect-[4/3]"
                 }`}
               >

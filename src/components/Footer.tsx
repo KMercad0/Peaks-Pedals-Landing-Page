@@ -29,8 +29,8 @@ export default function Footer() {
 
       {/* Footer Info */}
       <div className="border-t border-white/10 py-8 px-4">
-        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex flex-col sm:flex-row items-center gap-4 text-sm text-white/60">
+        <div className="max-w-5xl mx-auto flex flex-col items-center gap-6">
+          <div className="flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4 text-sm text-white/60">
             <div className="flex items-center gap-1.5">
               <MapPin size={14} strokeWidth={1.5} />
               <span>Irosin, Sorsogon</span>
@@ -43,7 +43,7 @@ export default function Footer() {
             </div>
             <div className="flex items-center gap-1.5">
               <Mail size={14} strokeWidth={1.5} />
-              <a href={`mailto:${property.email}`} className="hover:text-white transition-colors">
+              <a href={`mailto:${property.email}`} className="hover:text-white transition-colors truncate max-w-[200px] sm:max-w-none">
                 {property.email}
               </a>
             </div>

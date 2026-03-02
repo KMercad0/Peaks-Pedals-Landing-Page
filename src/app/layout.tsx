@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 
@@ -13,6 +13,13 @@ const dmSerifDisplay = DM_Serif_Display({
   subsets: ["latin"],
   weight: "400",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://peaksandpedals.vercel.app"),
@@ -46,9 +53,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Preconnect to external origins for faster resource loading */}
+        <link rel="preconnect" href="https://www.google.com" />
+        <link rel="preconnect" href="https://maps.googleapis.com" />
+        <link rel="dns-prefetch" href="https://www.booking.com" />
+        <link rel="dns-prefetch" href="https://www.agoda.com" />
+      </head>
       <body
         className={`${dmSans.variable} ${dmSerifDisplay.variable} antialiased`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-[var(--color-accent)] focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-medium"
+        >
+          Skip to main content
+        </a>
         {children}
       </body>
     </html>

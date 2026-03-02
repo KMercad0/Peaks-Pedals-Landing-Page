@@ -23,7 +23,9 @@
       "WebFetch(domain:mediaboom.com)",
       "WebFetch(domain:motopress.com)",
       "WebFetch(domain:gethostai.com)",
-      "Bash(find C:\\\\Users\\\\LarkLarkLark\\\\Desktop\\\\Workwork\\\\Claude Projects\\\\Peaks&Pedals:*)"
+      "Bash(find C:\\\\Users\\\\LarkLarkLark\\\\Desktop\\\\Workwork\\\\Claude Projects\\\\Peaks&Pedals:*)",
+      "mcp__morph-mcp__warpgrep_codebase_search",
+      "mcp__morph-mcp__edit_file"
     ]
   }
 }

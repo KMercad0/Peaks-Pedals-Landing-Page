@@ -20,7 +20,7 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="rounded-2xl bg-gradient-to-br from-[var(--color-bg-alt)] to-[#EDE4D8] p-8 sm:p-12 text-center shadow-sm"
+          className="rounded-2xl bg-gradient-to-br from-[var(--color-bg-alt)] to-[#EDE4D8] p-6 sm:p-8 md:p-12 text-center shadow-sm"
         >
           <p className="text-lg sm:text-xl leading-relaxed text-[var(--color-text-muted)] max-w-2xl mx-auto mb-10">
             {property.description}

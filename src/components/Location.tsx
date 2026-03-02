@@ -1,10 +1,30 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Clock, Plane } from "lucide-react";
 import { property } from "@/data/property";
 
 export default function Location() {
+  const [mapLoaded, setMapLoaded] = useState(false);
+  const mapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = mapRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMapLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="location" className="py-20 sm:py-28 px-4 bg-[var(--color-bg-alt)]">
       <div className="max-w-5xl mx-auto">
@@ -79,22 +99,29 @@ export default function Location() {
 
           {/* Map */}
           <motion.div
+            ref={mapRef}
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="rounded-xl overflow-hidden shadow-sm h-[300px] lg:h-full min-h-[280px]"
+            className="rounded-xl overflow-hidden shadow-sm h-[250px] sm:h-[300px] lg:h-full min-h-[250px]"
           >
-            <iframe
-              src={property.mapEmbedUrl}
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Peaks & Pedals Transient location on Google Maps"
-            />
+            {mapLoaded ? (
+              <iframe
+                src={property.mapEmbedUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Peaks & Pedals Transient location on Google Maps"
+              />
+            ) : (
+              <div className="w-full h-full bg-[var(--color-border)] flex items-center justify-center">
+                <MapPin size={32} className="text-[var(--color-text-muted)] animate-pulse" />
+              </div>
+            )}
           </motion.div>
         </div>
       </div>

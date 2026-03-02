@@ -1,14 +1,18 @@
+import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import PhotoCards from "@/components/PhotoCards";
-import Gallery from "@/components/Gallery";
-import Amenities from "@/components/Amenities";
-import Reviews from "@/components/Reviews";
-import BookingBanner from "@/components/BookingBanner";
-import Location from "@/components/Location";
 import Footer from "@/components/Footer";
 import { property } from "@/data/property";
+import ratingsData from "@/data/ratings.json";
+
+// Below-the-fold: code-split for faster initial load on slow connections
+const Gallery = dynamic(() => import("@/components/Gallery"));
+const Amenities = dynamic(() => import("@/components/Amenities"));
+const Reviews = dynamic(() => import("@/components/Reviews"));
+const BookingBanner = dynamic(() => import("@/components/BookingBanner"));
+const Location = dynamic(() => import("@/components/Location"));
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -29,7 +33,7 @@ const jsonLd = {
     "@type": "AggregateRating",
     ratingValue: property.rating,
     bestRating: 10,
-    ratingCount: 1,
+    ratingCount: ratingsData.platforms.reduce((sum, p) => sum + p.reviewCount, 0),
   },
   checkinTime: property.checkIn,
   checkoutTime: property.checkOut,

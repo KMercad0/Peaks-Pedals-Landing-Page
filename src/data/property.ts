@@ -17,8 +17,8 @@ export const property = {
   checkIn: "2:00 PM",
   checkOut: "12:00 PM",
   priceRange: "₱800 – ₱1,000 / night",
-  rating: 10.0,
-  ratingSource: "Booking.com",
+  rating: 9.8,
+  ratingSource: "Booking.com & Agoda",
   size: "32 m²",
   bedrooms: 1,
   bathrooms: 1,
@@ -98,13 +98,6 @@ export const property = {
       ],
     },
   ],
-
-  reviews: [] as {
-    name: string;
-    date: string;
-    text: string;
-    rating: number;
-  }[],
 
   mapEmbedUrl:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d487.19!2d124.0315898!3d12.7044247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a0cf003fa77d75%3A0x61fab16114218751!2sPeaks%26Pedals%20Transient!5e0!3m2!1sen!2sph!4v1700000000000!5m2!1sen!2sph",

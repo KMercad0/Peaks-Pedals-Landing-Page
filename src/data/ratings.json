@@ -1,0 +1,33 @@
+{
+  "platforms": [
+    {
+      "name": "Booking.com",
+      "score": 10.0,
+      "maxScore": 10,
+      "label": "Exceptional",
+      "reviewCount": 3,
+      "categories": [
+        { "name": "Cleanliness", "score": 10.0 },
+        { "name": "Facilities", "score": 10.0 },
+        { "name": "Location", "score": 10.0 },
+        { "name": "Comfort", "score": 10.0 },
+        { "name": "Service", "score": 10.0 },
+        { "name": "Value", "score": 10.0 }
+      ]
+    },
+    {
+      "name": "Agoda",
+      "score": 9.6,
+      "maxScore": 10,
+      "label": "Exceptional",
+      "reviewCount": 7,
+      "categories": [
+        { "name": "Location", "score": 9.7 },
+        { "name": "Service", "score": 9.7 },
+        { "name": "Value", "score": 9.7 },
+        { "name": "Cleanliness", "score": 9.4 },
+        { "name": "Facilities", "score": 9.4 }
+      ]
+    }
+  ]
+}

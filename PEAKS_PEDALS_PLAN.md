@@ -121,10 +121,11 @@ Why: DM Serif Display is elegant without being stuffy — feels like a boutique 
 - **Embedded Google Maps iframe** showing the property location
 - Check-in: 2:00 PM / Check-out: 12:00 PM
 
-### Section 6: Reviews (Last Priority — Placeholder for Now)
-- For v1: hardcode 2-3 reviews manually (copy from your Booking.com listing if you have any)
-- Simple card layout with reviewer name, date, quote, and star rating
-- **Do NOT try to scrape Booking.com or Google** — their APIs are paywalled or against TOS for scraping. Just manually copy a few reviews for now.
+### Section 6: Reviews (JSON-based Manual Curation)
+- Reviews stored in `src/data/reviews.json` — edit the JSON file to add/remove reviews without touching code
+- Each review: `{ name, date, text, rating (1-10), source ("Booking.com" or "Agoda") }`
+- Reviews component imports from JSON, shows source badges per review, attribution line below heading
+- **Do NOT scrape Booking.com or Agoda** — no public APIs, violates ToS, breaks every 2-6 weeks. Manual curation is the correct approach for ~10 reviews.
 
 ### Section 7: Footer / CTA
 - Repeat CTA: "Ready to book?" + Booking.com button
@@ -258,8 +259,8 @@ peaks-pedals/
 
 ## 8. Performance Targets
 
-- Use `next/image` for all photos (automatic WebP, lazy loading)
-- Static export (`output: 'export'` in next.config) — no server needed
+- Use `next/image` for all photos (automatic AVIF/WebP via Vercel, lazy loading)
+- Vercel image optimization enabled (no static export — enables automatic format conversion)
 - Google Fonts via `next/font/google` (no layout shift)
 - Target: Lighthouse 90+ on all categories
 

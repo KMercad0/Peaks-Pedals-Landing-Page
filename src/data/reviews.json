@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Robert",
+    "date": "February 2026",
+    "text": "We had a fantastic stay! The space was spotlessly clean and even better than the photos. The location was perfect — close enough to the market and everything but tucked away in a quiet neighborhood so we actually got some sleep. Also the rooftop has a great view of the mountains! The host was super responsive and made the check-in process a breeze. You can tell they really put thought into the little details (like the coffee selection and the fast Wi-Fi). Would definitely stay here again next time we're in Irosin!",
+    "rating": 10,
+    "source": "Agoda",
+    "travelerType": "Family"
+  },
+  {
+    "name": "Paula",
+    "date": "February 2026",
+    "text": "The place is superb and they are the one who will ask if there's anything else I may need!",
+    "rating": 10,
+    "source": "Agoda",
+    "travelerType": "Solo traveler"
+  },
+  {
+    "name": "Carlnor",
+    "date": "December 2025",
+    "text": "Really comfortable facility and comes with an amazing view of Mt. Bulusan. Convenient location, comfortable and has a really nice view.",
+    "rating": 10,
+    "source": "Booking.com",
+    "travelerType": "Group"
+  },
+  {
+    "name": "Jona",
+    "date": "December 2025",
+    "text": "Good place to stay. The host and staff were all approachable and accommodating. Kudos!",
+    "rating": 10,
+    "source": "Agoda",
+    "travelerType": "Couple"
+  },
+  {
+    "name": "Catherine",
+    "date": "November 2025",
+    "text": "We had a nice stay at their place. Very accommodating. Pets are allowed — our puppy was so relaxed! Good ventilation even without aircon. Super worth it!",
+    "rating": 9.6,
+    "source": "Agoda",
+    "travelerType": "Family"
+  },
+  {
+    "name": "Sebastian",
+    "date": "December 2025",
+    "text": "Great place, lots of space, and the hosts are passionate and very welcoming. Very helpful and incredibly warm. I definitely recommend this place without hesitation.",
+    "rating": 10,
+    "source": "Booking.com",
+    "travelerType": "Business traveler"
+  }
+]

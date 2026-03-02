@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Sans, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -72,6 +73,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );

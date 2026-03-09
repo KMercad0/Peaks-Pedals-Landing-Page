@@ -21,14 +21,10 @@ const jsonLd = {
   description: property.description,
   address: {
     "@type": "PostalAddress",
-    streetAddress: "M.L. Quezon St., San Pedro, 3F Orange Building",
-    addressLocality: "Irosin",
-    addressRegion: "Sorsogon",
-    postalCode: "4707",
-    addressCountry: "PH",
+    ...property.structuredAddress,
   },
   priceRange: property.priceRange,
-  image: "/images/roof3.jpg",
+  image: "https://peaksandpedals.vercel.app/images/roof3.jpg",
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: property.rating,

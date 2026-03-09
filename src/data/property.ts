@@ -9,6 +9,13 @@ export const property = {
     "https://www.agoda.com/en-ie/peaks-pedals-transient/hotel/irosin-ph.html?cid=1844104&ds=hE6tlecsxXqKg4le",
   address:
     "M.L. Quezon St., San Pedro, 3F Orange Building, Irosin, Sorsogon 4707",
+  structuredAddress: {
+    streetAddress: "M.L. Quezon St., San Pedro, 3F Orange Building",
+    addressLocality: "Irosin",
+    addressRegion: "Sorsogon",
+    postalCode: "4707",
+    addressCountry: "PH",
+  },
   phone: "0945 508 7191",
   email: "peaksandpedals@email.com",
   socialLinks: {
@@ -17,6 +24,8 @@ export const property = {
   checkIn: "2:00 PM",
   checkOut: "12:00 PM",
   priceRange: "₱800 – ₱1,000 / night",
+  priceHint: "From ₱800/night",
+  nearestAirport: "58 miles from Bicol International Airport",
   rating: 9.8,
   ratingSource: "Booking.com & Agoda",
   size: "32 m²",

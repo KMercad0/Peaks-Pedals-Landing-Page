@@ -26,12 +26,12 @@ export default function Navbar() {
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.classList.add("overflow-hidden");
     } else {
-      document.body.style.overflow = "";
+      document.body.classList.remove("overflow-hidden");
     }
     return () => {
-      document.body.style.overflow = "";
+      document.body.classList.remove("overflow-hidden");
     };
   }, [mobileOpen]);
 
@@ -79,7 +79,7 @@ export default function Navbar() {
           {/* Price hint — visible on scroll */}
           {scrolled && (
             <span className="text-xs text-[var(--color-text-muted)] font-medium whitespace-nowrap">
-              From ₱800/night
+              {property.priceHint}
             </span>
           )}
 
@@ -90,7 +90,7 @@ export default function Navbar() {
         <div className="flex md:hidden items-center gap-3">
           {scrolled && (
             <span className="text-[10px] text-[var(--color-text-muted)] font-medium whitespace-nowrap hidden xs:inline">
-              From ₱800/night
+              {property.priceHint}
             </span>
           )}
           <BookingCTA size="default" className="!px-4 !py-2 !text-xs" />

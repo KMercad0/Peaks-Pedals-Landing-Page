@@ -170,6 +170,84 @@ function PlatformCard({
   );
 }
 
+/* ─── Review Card ─── */
+
+function ReviewCard({
+  review,
+  index,
+}: {
+  review: (typeof reviews)[number];
+  index: number;
+}) {
+  const TravelerIcon = travelerIcons[review.travelerType] || User;
+  return (
+    <motion.div
+      key={`${review.name}-${index}`}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      className="bg-[var(--color-bg-alt)] rounded-xl p-6 flex flex-col"
+    >
+      {/* Header: stars + rating badge */}
+      <div className="flex items-center justify-between mb-3">
+        <ScoreStars score={review.rating} maxScore={10} size={16} />
+        <span className="text-sm font-bold text-[var(--color-accent)] bg-[var(--color-accent)]/10 px-2.5 py-1 rounded-lg">
+          {review.rating}
+        </span>
+      </div>
+
+      {/* Quote icon + Review text */}
+      <div className="relative mb-5 flex-1">
+        <Quote
+          size={28}
+          className="absolute -top-1 -left-1 text-[var(--color-accent)] opacity-15"
+          strokeWidth={1.5}
+        />
+        <p className="text-sm text-[var(--color-text)] leading-relaxed pl-4">
+          {review.text}
+        </p>
+      </div>
+
+      {/* Footer: name, meta with icons */}
+      <div className="border-t border-[var(--color-border)]/50 pt-4">
+        <p className="text-sm font-semibold text-[var(--color-text)] mb-2">
+          {review.name}
+        </p>
+        <div className="flex items-center flex-wrap gap-x-3 gap-y-1.5">
+          <div className="flex items-center gap-1.5">
+            <Calendar
+              size={14}
+              className="text-[var(--color-accent)]"
+              strokeWidth={2}
+            />
+            <span className="text-xs font-medium text-[var(--color-text)]">
+              {review.date}
+            </span>
+          </div>
+          {review.travelerType && (
+            <div className="flex items-center gap-1.5">
+              <TravelerIcon
+                size={14}
+                className="text-[var(--color-accent)]"
+                strokeWidth={2}
+              />
+              <span className="text-xs font-medium text-[var(--color-text)]">
+                {review.travelerType}
+              </span>
+            </div>
+          )}
+          {review.source && (
+            <span className="text-[11px] font-medium text-[var(--color-text-muted)] border border-[var(--color-border)] rounded-full px-2.5 py-0.5 ml-auto">
+              {review.source}
+            </span>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 /* ─── Main Reviews Section ─── */
 
 export default function Reviews() {
@@ -226,7 +304,8 @@ export default function Reviews() {
             strokeWidth={1.5}
           />
           <p className="text-sm text-[var(--color-text-muted)]">
-            {totalReviews} reviews across Booking.com & Agoda
+            {totalReviews} reviews across{" "}
+            {ratingsData.platforms.map((p) => p.name).join(" & ")}
           </p>
         </motion.div>
 
@@ -254,75 +333,9 @@ export default function Reviews() {
 
         {/* Individual Review Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {reviews.map((review, i) => {
-            const TravelerIcon = travelerIcons[review.travelerType] || User;
-            return (
-              <motion.div
-                key={`${review.name}-${i}`}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="bg-[var(--color-bg-alt)] rounded-xl p-6 flex flex-col"
-              >
-                {/* Header: stars + rating badge */}
-                <div className="flex items-center justify-between mb-3">
-                  <ScoreStars score={review.rating} maxScore={10} size={16} />
-                  <span className="text-sm font-bold text-[var(--color-accent)] bg-[var(--color-accent)]/10 px-2.5 py-1 rounded-lg">
-                    {review.rating}
-                  </span>
-                </div>
-
-                {/* Quote icon + Review text */}
-                <div className="relative mb-5 flex-1">
-                  <Quote
-                    size={28}
-                    className="absolute -top-1 -left-1 text-[var(--color-accent)] opacity-15"
-                    strokeWidth={1.5}
-                  />
-                  <p className="text-sm text-[var(--color-text)] leading-relaxed pl-4">
-                    {review.text}
-                  </p>
-                </div>
-
-                {/* Footer: name, meta with icons */}
-                <div className="border-t border-[var(--color-border)]/50 pt-4">
-                  <p className="text-sm font-semibold text-[var(--color-text)] mb-2">
-                    {review.name}
-                  </p>
-                  <div className="flex items-center flex-wrap gap-x-3 gap-y-1.5">
-                    <div className="flex items-center gap-1.5">
-                      <Calendar
-                        size={14}
-                        className="text-[var(--color-accent)]"
-                        strokeWidth={2}
-                      />
-                      <span className="text-xs font-medium text-[var(--color-text)]">
-                        {review.date}
-                      </span>
-                    </div>
-                    {review.travelerType && (
-                      <div className="flex items-center gap-1.5">
-                        <TravelerIcon
-                          size={14}
-                          className="text-[var(--color-accent)]"
-                          strokeWidth={2}
-                        />
-                        <span className="text-xs font-medium text-[var(--color-text)]">
-                          {review.travelerType}
-                        </span>
-                      </div>
-                    )}
-                    {review.source && (
-                      <span className="text-[11px] font-medium text-[var(--color-text-muted)] border border-[var(--color-border)] rounded-full px-2.5 py-0.5 ml-auto">
-                        {review.source}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
+          {reviews.map((review, i) => (
+            <ReviewCard key={`${review.name}-${i}`} review={review} index={i} />
+          ))}
         </div>
       </div>
     </section>

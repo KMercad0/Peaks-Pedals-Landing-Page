@@ -11,7 +11,7 @@ export default function Location() {
 
   useEffect(() => {
     const el = mapRef.current;
-    if (!el) return;
+    if (!el || typeof IntersectionObserver === "undefined") return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -70,7 +70,7 @@ export default function Location() {
               <div>
                 <p className="font-medium text-sm mb-1">Nearest Airport</p>
                 <p className="text-sm text-[var(--color-text-muted)]">
-                  58 miles from Bicol International Airport
+                  {property.nearestAirport}
                 </p>
               </div>
             </div>

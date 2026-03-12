@@ -27,7 +27,23 @@
       "mcp__morph-mcp__warpgrep_codebase_search",
       "mcp__morph-mcp__edit_file",
       "Bash(find C:\\\\Users\\\\LarkLarkLark\\\\Desktop\\\\Workwork\\\\Claude Projects\\\\Peaks&Pedals\\\\src\\\\app\\\\api:*)",
-      "Bash(find C:\\\\Users\\\\LarkLarkLark\\\\Desktop\\\\Workwork\\\\Claude Projects\\\\Peaks&Pedals\\\\src:*)"
+      "Bash(find C:\\\\Users\\\\LarkLarkLark\\\\Desktop\\\\Workwork\\\\Claude Projects\\\\Peaks&Pedals\\\\src:*)",
+      "Bash(find:*)",
+      "Bash(npm audit:*)",
+      "WebFetch(domain:docs.xendit.co)",
+      "WebFetch(domain:developers.booking.com)",
+      "Bash(cat:*)",
+      "WebFetch(domain:partnerhub.agoda.com)",
+      "WebFetch(domain:blog.tokeet.com)",
+      "WebFetch(domain:www.lodgify.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:www.rentalscaleup.com)",
+      "WebFetch(domain:help.pricelabs.co)",
+      "mcp__serena__onboarding",
+      "mcp__serena__list_dir",
+      "mcp__serena__write_memory",
+      "Bash(wc -l \"C:\\\\Users\\\\LarkLarkLark\\\\Desktop\\\\Workwork\\\\Claude Projects\\\\Peaks&Pedals/src/data/reviews.json\")",
+      "Bash(ls -lh \"/c/Users/LarkLarkLark/Desktop/Workwork/Claude Projects/Peaks&Pedals\"/*.md 2>/dev/null)"
     ]
   }
 }

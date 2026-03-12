@@ -62,6 +62,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://maps.googleapis.com" />
         <link rel="dns-prefetch" href="https://www.booking.com" />
         <link rel="dns-prefetch" href="https://www.agoda.com" />
+        <link rel="dns-prefetch" href="https://www.airbnb.com" />
       </head>
       <body
         className={`${dmSans.variable} ${dmSerifDisplay.variable} antialiased`}

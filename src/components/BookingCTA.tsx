@@ -104,6 +104,17 @@ export default function BookingCTA({
               <span className="text-base" aria-hidden="true">🅰</span>
               <span>Book on Agoda</span>
             </a>
+            <a
+              href={property.airbnbUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              role="menuitem"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 focus-visible:bg-gray-50 focus-visible:outline-none transition-colors border-t border-gray-50"
+            >
+              <span className="text-base" aria-hidden="true">🏠</span>
+              <span>Book on Airbnb</span>
+            </a>
           </motion.div>
         )}
       </AnimatePresence>

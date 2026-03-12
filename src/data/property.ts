@@ -7,6 +7,8 @@ export const property = {
     "https://www.booking.com/hotel/ph/peaks-amp-pedals-transient.html",
   agodaUrl:
     "https://www.agoda.com/en-ie/peaks-pedals-transient/hotel/irosin-ph.html?cid=1844104&ds=hE6tlecsxXqKg4le",
+  airbnbUrl:
+    "https://www.airbnb.com/rooms/1032861432227987161?source_impression_id=p3_1773272098_P3EYK5fIAy8NFb_3",
   address:
     "M.L. Quezon St., San Pedro, 3F Orange Building, Irosin, Sorsogon 4707",
   structuredAddress: {

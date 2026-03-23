@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { DM_Sans, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
@@ -25,7 +26,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://peaksandpedals.vercel.app"),
+  metadataBase: new URL("https://peaks-pedals-landing-page.vercel.app"),
   icons: {
     icon: "/images/logo.jpg",
   },
@@ -57,6 +58,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="google-site-verification" content="DdP559qQUwANGrh42mRZDsbLKStIT8Xo-Y-Y5GJVrtc" />
         {/* Preconnect to external origins for faster resource loading */}
         <link rel="preconnect" href="https://www.google.com" />
         <link rel="preconnect" href="https://maps.googleapis.com" />
@@ -75,6 +77,7 @@ export default function RootLayout({
         </a>
         {children}
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

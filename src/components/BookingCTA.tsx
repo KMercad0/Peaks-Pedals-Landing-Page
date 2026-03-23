@@ -8,12 +8,14 @@ interface BookingCTAProps {
   variant?: "primary" | "outline";
   size?: "default" | "lg";
   className?: string;
+  dropUp?: boolean;
 }
 
 export default function BookingCTA({
   variant = "primary",
   size = "default",
   className = "",
+  dropUp = false,
 }: BookingCTAProps) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -74,13 +76,13 @@ export default function BookingCTA({
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -8, scale: 0.95 }}
+            initial={{ opacity: 0, y: dropUp ? 8 : -8, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.95 }}
+            exit={{ opacity: 0, y: dropUp ? 8 : -8, scale: 0.95 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
             role="menu"
             aria-label="Booking platforms"
-            className="absolute right-0 sm:left-1/2 sm:-translate-x-1/2 mt-2 w-52 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-50"
+            className={`absolute right-0 sm:left-1/2 sm:-translate-x-1/2 w-52 bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden z-[999] ${dropUp ? "bottom-full mb-2" : "mt-2"}`}
           >
             <a
               href={property.bookingUrl}
@@ -90,8 +92,8 @@ export default function BookingCTA({
               onClick={() => setOpen(false)}
               className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 focus-visible:bg-gray-50 focus-visible:outline-none transition-colors"
             >
-              <span className="text-base" aria-hidden="true">🅱</span>
-              <span>Book on Booking.com</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-[#003580] shrink-0" aria-hidden="true" />
+              <span>Booking.com</span>
             </a>
             <a
               href={property.agodaUrl}
@@ -101,8 +103,8 @@ export default function BookingCTA({
               onClick={() => setOpen(false)}
               className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 focus-visible:bg-gray-50 focus-visible:outline-none transition-colors border-t border-gray-50"
             >
-              <span className="text-base" aria-hidden="true">🅰</span>
-              <span>Book on Agoda</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-[#5392f9] shrink-0" aria-hidden="true" />
+              <span>Agoda</span>
             </a>
             <a
               href={property.airbnbUrl}
@@ -112,8 +114,8 @@ export default function BookingCTA({
               onClick={() => setOpen(false)}
               className="flex items-center gap-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 focus-visible:bg-gray-50 focus-visible:outline-none transition-colors border-t border-gray-50"
             >
-              <span className="text-base" aria-hidden="true">🏠</span>
-              <span>Book on Airbnb</span>
+              <span className="w-2.5 h-2.5 rounded-full bg-[#FF5A5F] shrink-0" aria-hidden="true" />
+              <span>Airbnb</span>
             </a>
           </motion.div>
         )}

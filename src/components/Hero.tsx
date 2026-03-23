@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
-import BookingCTA from "./BookingCTA";
+
 import { property } from "@/data/property";
 
 export default function Hero() {
@@ -38,19 +38,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-base sm:text-xl md:text-2xl text-white/90 mb-8 font-light"
+          className="text-base sm:text-xl md:text-2xl text-white/90 font-light"
           style={{ textShadow: "0 1px 8px rgba(0,0,0,0.4)" }}
         >
           {property.tagline}
         </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-        >
-          <BookingCTA variant="outline" size="lg" />
-        </motion.div>
       </div>
 
       {/* Scroll indicator */}

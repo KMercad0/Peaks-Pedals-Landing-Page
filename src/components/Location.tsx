@@ -90,10 +90,19 @@ export default function Location() {
               </div>
             </div>
 
-            <div className="pt-2">
-              <p className="text-sm font-medium text-[var(--color-accent)]">
-                {property.priceRange}
-              </p>
+            <div className="pt-2 space-y-1">
+              <p className="font-medium text-sm mb-2">Rates per night</p>
+              {property.pricing.map((tier) => (
+                <p
+                  key={tier.pax}
+                  className="text-sm text-[var(--color-text-muted)] flex justify-between max-w-[200px]"
+                >
+                  <span>{tier.pax} {tier.pax === 1 ? "person" : "persons"}</span>
+                  <span className="font-medium text-[var(--color-accent)]">
+                    ₱{tier.rate.toLocaleString()}
+                  </span>
+                </p>
+              ))}
             </div>
           </motion.div>
 

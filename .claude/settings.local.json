@@ -43,7 +43,8 @@
       "mcp__serena__list_dir",
       "mcp__serena__write_memory",
       "Bash(wc -l \"C:\\\\Users\\\\LarkLarkLark\\\\Desktop\\\\Workwork\\\\Claude Projects\\\\Peaks&Pedals/src/data/reviews.json\")",
-      "Bash(ls -lh \"/c/Users/LarkLarkLark/Desktop/Workwork/Claude Projects/Peaks&Pedals\"/*.md 2>/dev/null)"
+      "Bash(ls -lh \"/c/Users/LarkLarkLark/Desktop/Workwork/Claude Projects/Peaks&Pedals\"/*.md 2>/dev/null)",
+      "mcp__morph-mcp__codebase_search"
     ]
   }
 }

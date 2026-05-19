@@ -26,7 +26,10 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://peaks-pedals-landing-page.vercel.app"),
+  metadataBase: new URL("https://peaksandpedals.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/images/logo.jpg",
   },

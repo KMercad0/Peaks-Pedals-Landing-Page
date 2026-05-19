@@ -117,12 +117,12 @@ export default function Splash() {
               priority
               className="rounded-full mx-auto mb-6 shadow-lg"
             />
-            <h1
+            <h2
               id="splash-heading"
               className="font-serif text-3xl sm:text-4xl mb-3"
             >
               Welcome to {property.name}
-            </h1>
+            </h2>
             <p className="text-sm sm:text-base text-white/85 mb-8">
               {property.tagline}
             </p>

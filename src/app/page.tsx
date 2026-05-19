@@ -7,6 +7,9 @@ import Footer from "@/components/Footer";
 import Splash from "@/components/Splash";
 import { property } from "@/data/property";
 import ratingsData from "@/data/ratings.json";
+import { APARTMENT_COORDS } from "@/data/landmarks";
+
+const SITE_URL = "https://peaksandpedals.vercel.app";
 
 // Below-the-fold: code-split for faster initial load on slow connections
 const Gallery = dynamic(() => import("@/components/Gallery"));
@@ -19,14 +22,23 @@ const Location = dynamic(() => import("@/components/Location"));
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LodgingBusiness",
+  "@id": `${SITE_URL}/#lodging`,
+  url: SITE_URL,
   name: property.name,
   description: property.description,
+  telephone: "+639455087191",
   address: {
     "@type": "PostalAddress",
     ...property.structuredAddress,
   },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: APARTMENT_COORDS.lat,
+    longitude: APARTMENT_COORDS.lng,
+  },
+  sameAs: [property.socialLinks.facebook],
   priceRange: property.priceRange,
-  image: "https://peaksandpedals.vercel.app/images/roof3.jpg",
+  image: `${SITE_URL}/images/roof3.jpg`,
   aggregateRating: {
     "@type": "AggregateRating",
     ratingValue: property.rating,

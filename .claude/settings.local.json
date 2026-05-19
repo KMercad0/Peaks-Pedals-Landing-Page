@@ -44,7 +44,12 @@
       "mcp__serena__write_memory",
       "Bash(wc -l \"C:\\\\Users\\\\LarkLarkLark\\\\Desktop\\\\Workwork\\\\Claude Projects\\\\Peaks&Pedals/src/data/reviews.json\")",
       "Bash(ls -lh \"/c/Users/LarkLarkLark/Desktop/Workwork/Claude Projects/Peaks&Pedals\"/*.md 2>/dev/null)",
-      "mcp__morph-mcp__codebase_search"
+      "mcp__morph-mcp__codebase_search",
+      "Bash(npx tsc *)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "playwright",
+    "serena"
+  ]
 }

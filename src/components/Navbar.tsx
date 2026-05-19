@@ -76,23 +76,11 @@ export default function Navbar() {
             </a>
           ))}
 
-          {/* Price hint — visible on scroll */}
-          {scrolled && (
-            <span className="text-xs text-[var(--color-text-muted)] font-medium whitespace-nowrap">
-              {property.priceHint}
-            </span>
-          )}
-
           <BookingCTA size="default" />
         </div>
 
         {/* Mobile Toggle */}
         <div className="flex md:hidden items-center gap-3">
-          {scrolled && (
-            <span className="text-[10px] text-[var(--color-text-muted)] font-medium whitespace-nowrap hidden xs:inline">
-              {property.priceHint}
-            </span>
-          )}
           <BookingCTA size="default" className="!px-4 !py-2 !text-xs" />
           <button
             onClick={() => setMobileOpen(!mobileOpen)}

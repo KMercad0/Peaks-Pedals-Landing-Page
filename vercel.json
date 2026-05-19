@@ -13,7 +13,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google.com https://maps.googleapis.com https://maps.gstatic.com; frame-src https://www.google.com; font-src 'self'; connect-src 'self' https://va.vercel-scripts.com"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google.com https://maps.googleapis.com https://maps.gstatic.com https://tile.openstreetmap.org https://*.tile.openstreetmap.org; frame-src https://www.google.com; font-src 'self'; connect-src 'self' https://va.vercel-scripts.com"
         },
         {
           "key": "Referrer-Policy",

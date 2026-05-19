@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import PhotoCards from "@/components/PhotoCards";
 import Footer from "@/components/Footer";
+import Splash from "@/components/Splash";
 import { property } from "@/data/property";
 import ratingsData from "@/data/ratings.json";
 
@@ -12,6 +13,7 @@ const Gallery = dynamic(() => import("@/components/Gallery"));
 const Amenities = dynamic(() => import("@/components/Amenities"));
 const Reviews = dynamic(() => import("@/components/Reviews"));
 const BookingBanner = dynamic(() => import("@/components/BookingBanner"));
+const Explore = dynamic(() => import("@/components/Explore"));
 const Location = dynamic(() => import("@/components/Location"));
 
 const jsonLd = {
@@ -46,6 +48,7 @@ const jsonLd = {
 export default function Home() {
   return (
     <>
+      <Splash />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -59,6 +62,7 @@ export default function Home() {
         <Amenities />
         <Reviews />
         <BookingBanner />
+        <Explore />
         <Location />
       </main>
       <Footer />

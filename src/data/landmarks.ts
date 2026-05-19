@@ -27,6 +27,23 @@ export const categories: { key: LandmarkCategory; icon: CategoryIconName }[] = [
 
 export const allCategories: LandmarkCategory[] = categories.map((c) => c.key);
 
+// Haversine distance in meters between two lat/lng points.
+export function distanceMeters(
+  a: { lat: number; lng: number },
+  b: { lat: number; lng: number }
+): number {
+  const R = 6371000;
+  const toRad = (d: number) => (d * Math.PI) / 180;
+  const dLat = toRad(b.lat - a.lat);
+  const dLng = toRad(b.lng - a.lng);
+  const lat1 = toRad(a.lat);
+  const lat2 = toRad(b.lat);
+  const h =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
 // Owner: add landmarks below. To get lat/lng, right-click a spot on Google Maps
 // and click the coordinates to copy them. Use a stable kebab-case id.
 // mapsUrl: directions deep-link — opens Google Maps app natively on mobile.

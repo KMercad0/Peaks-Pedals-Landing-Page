@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import "leaflet.markercluster";
+import "leaflet.markercluster/dist/MarkerCluster.css";
+import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import {
   APARTMENT_COORDS,
   type Landmark,
@@ -37,6 +40,56 @@ function pinIcon(color: string, isApartment = false): L.DivIcon {
     iconAnchor: [size / 2, size],
     popupAnchor: [0, -size],
   });
+}
+
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function popupHtml(l: Landmark): string {
+  const dir = l.mapsUrl
+    ? `<br/><a href="${escapeHtml(l.mapsUrl)}" target="_blank" rel="noopener noreferrer">Get directions</a>`
+    : "";
+  const desc = l.description ? `<br/>${escapeHtml(l.description)}` : "";
+  return `<strong>${escapeHtml(l.name)}</strong><br/><span style="font-size:0.75rem;opacity:0.7">${escapeHtml(l.category)}</span>${desc}${dir}`;
+}
+
+function ClusterLayer({ landmarks }: { landmarks: Landmark[] }) {
+  const map = useMap();
+  const groupRef = useRef<L.MarkerClusterGroup | null>(null);
+
+  useEffect(() => {
+    const group = L.markerClusterGroup({
+      showCoverageOnHover: false,
+      spiderfyOnMaxZoom: true,
+      maxClusterRadius: 45,
+    });
+    groupRef.current = group;
+    map.addLayer(group);
+    return () => {
+      map.removeLayer(group);
+      groupRef.current = null;
+    };
+  }, [map]);
+
+  useEffect(() => {
+    const group = groupRef.current;
+    if (!group) return;
+    group.clearLayers();
+    const markers = landmarks.map((l) =>
+      L.marker([l.lat, l.lng], {
+        icon: pinIcon(categoryColors[l.category]),
+      }).bindPopup(popupHtml(l))
+    );
+    group.addLayers(markers);
+  }, [landmarks]);
+
+  return null;
 }
 
 function FocusController({
@@ -86,36 +139,7 @@ export default function ExploreMap({
         </Popup>
       </Marker>
 
-      {landmarks.map((l) => (
-        <Marker
-          key={l.id}
-          position={[l.lat, l.lng]}
-          icon={pinIcon(categoryColors[l.category])}
-        >
-          <Popup>
-            <strong>{l.name}</strong>
-            <br />
-            <span style={{ fontSize: "0.75rem", opacity: 0.7 }}>
-              {l.category}
-            </span>
-            {l.description && (
-              <>
-                <br />
-                {l.description}
-              </>
-            )}
-            {l.mapsUrl && (
-              <>
-                <br />
-                <a href={l.mapsUrl} target="_blank" rel="noopener noreferrer">
-                  Get directions
-                </a>
-              </>
-            )}
-          </Popup>
-        </Marker>
-      ))}
-
+      <ClusterLayer landmarks={landmarks} />
       <FocusController focusId={focusId} landmarks={landmarks} />
     </MapContainer>
   );

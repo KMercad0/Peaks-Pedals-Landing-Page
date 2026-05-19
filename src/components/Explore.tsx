@@ -14,6 +14,8 @@ import {
   landmarks as allLandmarks,
   categories,
   allCategories,
+  distanceMeters,
+  APARTMENT_COORDS,
   type LandmarkCategory,
   type CategoryIconName,
 } from "@/data/landmarks";
@@ -37,19 +39,39 @@ const iconMap: Record<CategoryIconName, React.ElementType> = {
   Stethoscope,
 };
 
+const INITIAL_VISIBLE = 8;
+
+function formatDistance(m: number): string {
+  if (m < 1000) return `${Math.round(m)} m`;
+  return `${(m / 1000).toFixed(1)} km`;
+}
+
 export default function Explore() {
   const [active, setActive] = useState<LandmarkCategory[]>(allCategories);
   const [focusId, setFocusId] = useState<string | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const sorted = useMemo(
+    () =>
+      allLandmarks
+        .map((l) => ({ ...l, distance: distanceMeters(APARTMENT_COORDS, l) }))
+        .sort((a, b) => a.distance - b.distance),
+    []
+  );
 
   const visible = useMemo(
-    () => allLandmarks.filter((l) => active.includes(l.category)),
-    [active]
+    () => sorted.filter((l) => active.includes(l.category)),
+    [sorted, active]
   );
+
+  const listed = showAll ? visible : visible.slice(0, INITIAL_VISIBLE);
+  const hiddenCount = visible.length - listed.length;
 
   const toggle = (key: LandmarkCategory) => {
     setActive((prev) =>
       prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]
     );
+    setShowAll(false);
   };
 
   return (
@@ -68,24 +90,25 @@ export default function Explore() {
           Explore Irosin
         </motion.h2>
         <p className="text-center text-sm text-[var(--color-text-muted)] mb-12 max-w-xl mx-auto">
-          Our handpicked spots around town. Tap a place to see it on the map.
+          Our handpicked spots around town, sorted by distance from the
+          apartment. Tap a place to see it on the map.
         </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6 lg:gap-8">
-          {/* Map */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-6 lg:gap-8">
+          {/* Map — first on mobile, left on desktop */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="rounded-xl overflow-hidden shadow-sm h-[360px] sm:h-[460px] lg:h-[560px] order-2 lg:order-1"
+            className="rounded-xl overflow-hidden shadow-sm h-[360px] sm:h-[460px] lg:h-[560px] order-1 lg:order-1"
           >
             <ExploreMap landmarks={visible} focusId={focusId} />
           </motion.div>
 
           {/* Sidebar */}
-          <div className="order-1 lg:order-2 flex flex-col gap-5">
-            <div>
+          <div className="order-2 lg:order-2 flex flex-col gap-5">
+            <div className="sticky top-0 z-10 bg-[var(--color-bg)] pb-2 lg:static">
               <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-text-muted)] mb-3">
                 Filter by
               </p>
@@ -122,42 +145,67 @@ export default function Explore() {
                   No categories selected.
                 </p>
               ) : (
-                <ul className="space-y-2">
-                  {visible.map((l) => {
-                    const cat = categories.find((c) => c.key === l.category);
-                    const Icon = cat ? iconMap[cat.icon] : MapPin;
-                    const selected = focusId === l.id;
-                    return (
-                      <li key={l.id}>
-                        <button
-                          type="button"
-                          onClick={() => setFocusId(l.id)}
-                          className={`w-full text-left flex items-start gap-2.5 p-2.5 rounded-lg border transition-colors ${
-                            selected
-                              ? "border-[var(--color-accent)] bg-[var(--color-accent)]/5"
-                              : "border-[var(--color-border)] hover:border-[var(--color-accent)]/50"
-                          }`}
-                        >
-                          <Icon
-                            size={16}
-                            strokeWidth={1.75}
-                            className="text-[var(--color-accent)] mt-0.5 shrink-0"
-                          />
-                          <span className="flex-1">
-                            <span className="block text-sm font-medium">
-                              {l.name}
-                            </span>
-                            {l.description && (
-                              <span className="block text-xs text-[var(--color-text-muted)] mt-0.5 line-clamp-2">
-                                {l.description}
+                <>
+                  <ul className="space-y-2">
+                    {listed.map((l) => {
+                      const cat = categories.find((c) => c.key === l.category);
+                      const Icon = cat ? iconMap[cat.icon] : MapPin;
+                      const selected = focusId === l.id;
+                      return (
+                        <li key={l.id}>
+                          <button
+                            type="button"
+                            onClick={() => setFocusId(l.id)}
+                            className={`w-full text-left flex items-start gap-2.5 p-2.5 rounded-lg border transition-colors ${
+                              selected
+                                ? "border-[var(--color-accent)] bg-[var(--color-accent)]/5"
+                                : "border-[var(--color-border)] hover:border-[var(--color-accent)]/50"
+                            }`}
+                          >
+                            <Icon
+                              size={16}
+                              strokeWidth={1.75}
+                              className="text-[var(--color-accent)] mt-0.5 shrink-0"
+                            />
+                            <span className="flex-1 min-w-0">
+                              <span className="flex items-baseline justify-between gap-2">
+                                <span className="block text-sm font-medium truncate">
+                                  {l.name}
+                                </span>
+                                <span className="text-[10px] text-[var(--color-text-muted)] shrink-0 tabular-nums">
+                                  {formatDistance(l.distance)}
+                                </span>
                               </span>
-                            )}
-                          </span>
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
+                              {l.description && (
+                                <span className="block text-xs text-[var(--color-text-muted)] mt-0.5 line-clamp-2">
+                                  {l.description}
+                                </span>
+                              )}
+                            </span>
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  {hiddenCount > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => setShowAll(true)}
+                      className="mt-3 w-full text-center text-xs font-medium text-[var(--color-accent)] hover:underline py-2"
+                    >
+                      Show all {visible.length} places
+                    </button>
+                  )}
+                  {showAll && visible.length > INITIAL_VISIBLE && (
+                    <button
+                      type="button"
+                      onClick={() => setShowAll(false)}
+                      className="mt-3 w-full text-center text-xs font-medium text-[var(--color-text-muted)] hover:underline py-2"
+                    >
+                      Show less
+                    </button>
+                  )}
+                </>
               )}
             </div>
           </div>
